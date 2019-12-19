@@ -42,6 +42,3 @@ Feature: Login
     Then user enters "wrong_username" username and "UserUser123" password
     And user verifies that "Invalid user name or password." message is displayed
 
-  git remote add upstream "https://github.com/CybertekSchool/Summer2019OnlineCucumberSelenium.git"
-  // then pull from either
-  git pull upstream master  //or
