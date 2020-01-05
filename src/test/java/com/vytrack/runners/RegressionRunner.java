@@ -1,22 +1,26 @@
 package com.vytrack.runners;
 
+
+
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features="src/test/resources/features", //path to features
+        features={"src/test/resources/features/activities",
+        "src/test/resources/features/fleet"}, //path to features
         glue = "com/vytrack/step_definitions",  //path to the step definitions
         dryRun = false ,
-        tags = "  @smoke_test",
+        tags = "",
         plugin = {"html:target/default-cucumber-reports",
-                    "json:target/cucumber.json",
+                "json:target/cucumber.json",
                 "rerun:target/rerun.txt"
         }
 )
-public class CucumberRunner {
 
 
 
+public class RegressionRunner {
 }

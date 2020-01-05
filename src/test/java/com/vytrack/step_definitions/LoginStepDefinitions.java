@@ -7,6 +7,8 @@ import com.vytrack.utilities.Driver;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
+import java.util.Map;
+
 public class LoginStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     LoginPage loginPage = new LoginPage();//created login page object
@@ -50,12 +52,33 @@ public class LoginStepDefinitions {
     //Then user enters "storemanager85" username and "wrong" password
     @Then("user enters {string} username and {string} password")
     public void user_enters_username_and_password(String string, String string2) {
-        System.out.println("Login with "+string+" username and "+string2+" password.");
+        System.out.println("Login with " + string + " username and " + string2 + " password.");
+        loginPage.login(string, string2);
     }
 
     @Then("user verifies that {string} message is displayed")
     public void user_verifies_that_message_is_displayed(String string) {
-        System.out.println("Verified that warning message is displayed: "+string);
+        System.out.println("Verified that warning message is displayed: " + string);
+    }
+//    Then user logs in as driver with following credentials
+//            | username | user160     |
+//            | password | UserUser123 |
+
+    @Then("user logs in as driver with following credentials")
+    public void user_logs_in_as_driver_with_following_credentials(Map<String, String> dataTable) {
+        System.out.println(dataTable);
+        loginPage.login(dataTable.get("username"), dataTable.get("password"));
+    }
+
+    @Then("user logs in as {string}")
+    public void user_logs_in_as(String role) {
+        loginPage.login(role);
+    }
+
+    @Then("the page title should be {string}")
+    public void the_page_title_should_be(String string) {
+        BrowserUtils.waitForPageTitle(string);
+        Assert.assertEquals("Title is incorrect", string, Driver.get().getTitle());
     }
 
 }

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 //everything that is in common among pages
 //can go here
 //for example top menu elements don't belong to specific page
@@ -53,7 +54,6 @@ public class BasePage {
     public boolean waitUntilLoaderMaskDisappear() {
         WebDriverWait wait = new WebDriverWait(Driver.get(), 30);
         try {
-            BrowserUtils.wait(1);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div[class='loader-mask shown']")));
             return true;
         } catch (NoSuchElementException e) {
@@ -137,22 +137,4 @@ public class BasePage {
         new WebDriverWait(Driver.get(), 10).until(ExpectedConditions.textToBe(By.cssSelector("h1[class='oro-subtitle']"), pageSubtitleText));
     }
 
-    public static class VehiclesPage extends BasePage {
-
-        @FindBy (css= "[title= 'Create Car']")
-        public WebElement createACarElement;
-
-        /*
-
-        Use this method to click on create a car button
-        Method already contains to handle synchronization issues
-         */
-        public void clickToCreateACar(){
-
-            BrowserUtils.waitForVisibility(createACarElement, 10);
-            BrowserUtils.waitForClickablility(createACarElement,15);
-            createACarElement.click();
-        }
-
-    }
 }

@@ -20,9 +20,10 @@ public class Hook {
     public void teardown(Scenario scenario){
         //if test failed - do this
         if(scenario.isFailed()){
+            System.out.println("Test failed!");
             byte[] screenshot = ((TakesScreenshot)Driver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
-            System.out.println("Test failed!");
+
         }else{
             System.out.println("Cleanup!");
             System.out.println("Test completed!");
